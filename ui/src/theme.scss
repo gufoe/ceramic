@@ -1,0 +1,41 @@
+
+$theme-colors: (
+  primary: #81a1c1,
+  danger: #ff4136,
+  darker: darken(#2e3440, 3%),
+  dark: #2e3440,
+  soft-dark: #3b4252,
+  soft-light: darken(#d8dee9, 10%),
+  light: #e5e9f0,
+);
+
+$body-bg: map-get($theme-colors, dark);
+$body-color: map-get($theme-colors, light);
+
+$input-bg: map-get($theme-colors, soft-dark);
+$input-placeholder-color: map-get($theme-colors, soft-light);
+$input-color: map-get($theme-colors, light);
+$input-border-color: map-get($theme-colors, primary);
+$input-group-addon-bg: map-get($theme-colors, primary);
+$custom-file-button-color: #fff;
+$border-radius: 15rem;
+$input-border-radius: $border-radius;
+$input-border-radius-sm: $border-radius;
+$custom-file-border-radius: $border-radius;
+
+$font-family-base: Gafata, "monospace";
+
+@import '~bootstrap';
+@import '~bootstrap-vue';
+
+
+.custom-file-label {
+  overflow: hidden;
+}
+.custom-file-label::after {
+  border-radius: 0!important;
+}
+
+input {
+  filter: none;
+}

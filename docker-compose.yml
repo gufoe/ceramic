@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    environment:
+    - MYSQL_ROOT_PASSWORD=secret
+    volumes:
+    - ./db:/var/lib/mysql
+
+  fpm:
+    build: vm
+    entrypoint: ["bash", "-c", "service php7.3-fpm start && exec tail -fn0 /var/log/php*"]
+    user: root
+    volumes:
+    - ./www:/app
+    - ./builder:/builder
+    - ./home:/home
+
+  nginx:
+    build: nginx
+    entrypoint: ["bash", "-c", "nginx && tail -fn0 /var/log/nginx/*.log"]
+    volumes:
+    - ./www:/app
+    ports:
+    - 80:80
+
+  adminer:
+    image: adminer
+    ports:
+    - 3331:8080
