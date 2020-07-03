@@ -7,5 +7,3 @@ RUN apt-get install -y \
 
 RUN mkdir /mnt/www
 RUN chown www-data:www-data /mnt/www
-
-COPY nginx-default /etc/nginx/sites-available/default

@@ -34,6 +34,8 @@ services:
     entrypoint: ["bash", "-c", "nginx && tail -fn0 /var/log/nginx/*.log"]
     volumes:
     - ./www:/app
+    - ./ui/dist:/app/public/ui
+    - ./nginx/nginx-default:/etc/nginx/sites-available/default:ro
     ports:
     - 80:80
 

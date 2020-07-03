@@ -1,23 +1,14 @@
 server {
 	client_max_body_size 100m;
-	index index.php;
+	index index.html;
 	set $basepath "/";
-
-	# check one name domain for simple application
-	set $domain "app";
-	set $rootpath "${domain}/public";
-	#set $servername "${domain}.x";
-
-	# check multi name domain to multi application
 
 	server_name _;
 
 	access_log "/var/log/nginx/access.log";
 	error_log "/var/log/nginx/server.x.error.log";
 
-	root $basepath/$rootpath;
-
-
+	root "/app/public";
 
 	gzip on;
 	gzip_disable "msie6";
@@ -29,23 +20,18 @@ server {
 	gzip_http_version 1.1;
 	gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
 
-
-
 	# check file exist and send request sting to index.php
 	location / {
-		try_files $uri $uri/ /index.php?$args;
+		try_files /ui/$uri /ui/$uri/ $uri $uri/ /index.php?$args;
 	}
 
-	# allow php only in root index.php
-	#location ~ "^/index\.php$" {
-	# allow execute all php files
-	location ~ \.php$ {
+	location ~ "^/index\.php$" {
 		try_files $uri =404;
 		fastcgi_split_path_info ^(.+\.php)(/.+)$;
 		fastcgi_pass fpm:9000;
 		fastcgi_index index.php;
 		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-	        fastcgi_param HTTPS off;
+    fastcgi_param HTTPS off;
 		fastcgi_param PHP_VALUE "upload_max_filesize = 200M \n post_max_size=200M";
 		include fastcgi.conf;
 	}
