@@ -48,18 +48,18 @@
                   <b-button v-if="build.status == 'built'"
                   v-b-tooltip.hover.bottom title="Download debug apk"
                   variant="link"
-                  :href="$store.linkTo(build.id+'-debug.apk')" :download="`${project.name}`">
+                  :href="$store.linkTo(build.id+'-debug.apk')" :download="`${project.name}.apk`">
                     <b-icon-file-earmark-code/>
                   </b-button>
                   <b-button v-if="build.status == 'built'"
                   v-b-tooltip.hover.bottom title="Download release apk"
                   variant="link"
-                  :href="$store.linkTo(build.id+'-release.apk')" :download="`${project.name}`">
+                  :href="$store.linkTo(build.id+'-release.apk')" :download="`${project.name}.apk`">
                     <b-icon-file-earmark-check/>
                   </b-button>
                   <b-button variant="link"
                   v-b-tooltip.hover.bottom title="Download source code"
-                  :href="$store.linkTo(build.input+'.zip')" :download="`${project.name}`">
+                  :href="$store.linkTo(build.input+'.zip')" :download="`${project.name}.zip`">
                     <b-icon-file-earmark-zip/>
                   </b-button>
 
