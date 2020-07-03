@@ -1,0 +1,6 @@
+set -e
+cd ui
+yarn build
+cd ..
+rm -rf www/public/ui
+mv ui/dist www/public/ui

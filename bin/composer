@@ -1,0 +1,5 @@
+#!/bin/bash
+cd "$(dirname "$0")/../"
+docker-compose run -T \
+  --user noob --entrypoint '' -w /app \
+ fpm composer "$@"

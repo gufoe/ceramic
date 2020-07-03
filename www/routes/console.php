@@ -18,6 +18,18 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
 
+Artisan::command('db:wait', function () {
+    while (true) {
+        try {
+            \DB::select('select 1');
+            break;
+        } catch (\Exception $e) {
+            $this->comment("Waiting db: {$e->getMessage()}");
+            sleep(1);
+        }
+    }
+})->describe('Display an inspiring quote');
+
 Artisan::command('build-one', function () {
     while (true) {
         $build = \App\Build::orderBy('created_at', 'asc')

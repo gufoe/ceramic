@@ -1,0 +1,11 @@
+#/bin/bash
+set -e
+set -x
+
+git pull
+docker-compose stop -t 6
+./bin/composer install
+docker-compose up --build -d
+./bin/art db:wait
+./bin/art migrate --force
+./bin/art db:seed

@@ -3,8 +3,12 @@ version: '3'
 services:
   db:
     image: mysql:5.7
+    user: '1000:1000'
     environment:
     - MYSQL_ROOT_PASSWORD=secret
+    - MYSQL_USER=ceramic
+    - MYSQL_PASSWORD=secret
+    - MYSQL_DATABASE=ceramic
     volumes:
     - ./db:/var/lib/mysql
 
@@ -12,6 +16,8 @@ services:
     build: vm
     entrypoint: ["bash", "-c", "service php7.3-fpm start && exec tail -fn0 /var/log/php*"]
     user: root
+    depends_on:
+    - db
     volumes:
     - ./www:/app
     - ./builder:/builder
@@ -31,15 +37,16 @@ services:
 
   nginx:
     build: nginx
-    entrypoint: ["bash", "-c", "nginx && tail -fn0 /var/log/nginx/*.log"]
+    entrypoint: ["bash", "-c", "nginx && exec tail -fn0 /var/log/nginx/*.log"]
     volumes:
-    - ./www:/app
-    - ./ui/dist:/app/public/ui
+    - ./www:/app:ro
     - ./nginx/nginx-default:/etc/nginx/sites-available/default:ro
     ports:
-    - 80:80
+    - '127.0.0.1:7001:80'
 
   adminer:
     image: adminer
+    depends_on:
+    - db
     ports:
-    - 3331:8080
+    - '127.0.0.1:7002:8080'
