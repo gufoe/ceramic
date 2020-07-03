@@ -17,6 +17,18 @@ services:
     - ./builder:/builder
     - ./home:/home
 
+  builder:
+    build: vm
+    entrypoint: ["php", "/app/artisan", "build-one"]
+    user: noob
+    depends_on:
+    - db
+    restart: unless-stopped
+    volumes:
+    - ./www:/app
+    - ./builder:/builder
+    - ./home:/home
+
   nginx:
     build: nginx
     entrypoint: ["bash", "-c", "nginx && tail -fn0 /var/log/nginx/*.log"]

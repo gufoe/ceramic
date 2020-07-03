@@ -55,10 +55,10 @@ echo cap add android...
 [[ -d android ]] || cap add android
 
 echo cap sync...
-cap sync
+cap copy
 
 # echo cap open android...
 # cap open android
 
 cd android
-./gradlew --build-cache --configure-on-demand --parallel build -x lint -x lintVitalRelease
+./gradlew --build-cache --configure-on-demand --parallel build -x test -x lint -x lintVitalRelease

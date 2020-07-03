@@ -1,12 +1,12 @@
 <template lang="html">
   <b-container>
-    <h1>Ceramic</h1>
-    <h3>Convert your assets into an app thanks to Capacitor</h3>
+    <h1><b>Ceramic</b></h1>
+    <h3>Convert your <b>HTML</b> assets into an <b>APK</b> thanks to Capacitor</h3>
 
     <b-row class="mt-5">
       <b-col v-for="feat in features" :key="feat.title" class="feature">
-        <h4>
-          <b-icon :icon="feat.icon" :variant="feat.variant" :animation="feat.animation"/>
+        <h4 class="mb-3">
+          <b-icon :icon="feat.icon" :variant="feat.variant" :animation="feat.animation" class="mr-1"/>
           {{ feat.title }}
         </h4>
         <p v-html="feat.description"></p>
