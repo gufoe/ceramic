@@ -43,11 +43,9 @@ export default {
           // animation: 'spin',
           title: 'No humans',
           description: 'We have the CLI support, so you can automate everybody from the terminal.',
-          action: 'I want to sign up',
+          action: 'Show me',
           action_fn: () => {
-            this.$router.push({
-              name: 'signup',
-            })
+            location.href = 'https://github.com/gufoe/ceramic-cli'
           },
         },
         {
