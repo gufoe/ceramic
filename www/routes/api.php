@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('signup', 'UserController@signup');
 Route::post('login', 'UserController@login');
+Route::post('projects/{id}/build', 'ProjectController@build');
+Route::get('builds/{secret}', 'ProjectController@buildStatus');
 
 Route::middleware('auth:api')->group(function() {
   Route::get('self', 'UserController@self');
@@ -26,5 +28,4 @@ Route::middleware('auth:api')->group(function() {
   Route::post('projects', 'ProjectController@create');
   Route::delete('projects/{id}', 'ProjectController@delete');
   Route::get('projects/{id}', 'ProjectController@list');
-  Route::post('projects/{id}/build', 'ProjectController@build');
 });

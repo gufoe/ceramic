@@ -16,9 +16,10 @@ Vue.use(IconsPlugin)
 Vue.config.productionTip = false
 
 Vue.prototype._ = window._ = lodash
+let host = location.host.match(':808') ? location.hostname+':7001' : location.hostname
 Vue.prototype.$http = axios.create({
-  baseURL: '//'+location.hostname+'/api/',
-  timeout: 1000,
+  baseURL: '//'+host+'/api/',
+  timeout: 10000,
   // headers: {'X-Custom-Header': 'foobar'}
 })
 

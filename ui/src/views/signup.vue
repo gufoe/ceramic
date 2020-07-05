@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="page-signup">
     <h1>Sign up</h1>
-    <b-form class="mt-4">
+    <b-form class="mt-4" @click="signup()">
       <b-form-group
       :invalid-feedback="errors ? (errors.response.email||[]).join(' ') : ''"
       :state="errors ? !errors.response.email : null">
@@ -30,7 +30,7 @@
       </b-form-group>
 
       <div class="mt-4">
-        <b-button variant="primary" :disabled="is_loading" @click="signup()">Register</b-button>
+        <b-button variant="primary" :disabled="is_loading" type="submit">Register</b-button>
       </div>
     </b-form>
   </div>

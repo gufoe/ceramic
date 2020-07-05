@@ -24,4 +24,9 @@ class Build extends Model
         if (!$this->built_at) return 'building';
         return 'built';
     }
+    public function regenSecret() {
+        $secret = random_str(20);
+        $this->update([ 'secret' => $secret ]);
+        return $secret;
+    }
 }

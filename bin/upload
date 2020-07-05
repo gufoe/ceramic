@@ -1,0 +1,6 @@
+set -e
+ssh root@gufoe.it 'echo connected &&
+  cd ceramic &&
+  git pull &&
+  ./bin/deploy
+  '

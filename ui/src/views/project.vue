@@ -1,7 +1,8 @@
 <template lang="html">
   <div class="project-page">
     <h1>{{ project.name }}</h1>
-    <div>
+    <h5>Secret: <code>{{ project.secret }}</code></h5>
+    <div class="mt-4">
 
       <b-form @submit.prevent="startBuild()" ref="build_form">
         <b-row>

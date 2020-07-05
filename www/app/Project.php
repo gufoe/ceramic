@@ -12,10 +12,12 @@ class Project extends Model
     }
 
     function queueBuild(string $input) {
-        return $this->builds()->create([
+        $build = $this->builds()->create([
             'input' => $input,
             'config' => $this->config,
         ]);
+        $build->regenSecret();
+        return $build;
     }
 
     public function getConfigAttribute(string $config) {
@@ -23,5 +25,11 @@ class Project extends Model
     }
     public function setConfigAttribute(object $config) {
         $this->attributes['config'] = json_encode($config);
+    }
+
+    public function regenSecret() {
+        $secret = random_str(20);
+        $this->update([ 'secret' => $secret ]);
+        return $secret;
     }
 }

@@ -32,6 +32,7 @@ Artisan::command('db:wait', function () {
 
 Artisan::command('build-one', function () {
     while (true) {
+        Artisan::call('db:wait');
         $build = \App\Build::orderBy('created_at', 'asc')
             ->whereNull('processing_at')
             ->whereNull('canceled_at')

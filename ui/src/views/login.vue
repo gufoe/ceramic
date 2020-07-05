@@ -4,7 +4,7 @@
     <div class="text-danger" v-if="errors">
       Login failed
     </div>
-    <b-form class="mt-4">
+    <b-form class="mt-4" @submit="login()">
       <b-form-group>
       <b-input-group size="sm">
         <b-input-group-prepend is-text>
@@ -29,7 +29,7 @@
       </b-form-group>
 
       <div class="mt-4">
-        <b-button variant="primary" :disabled="is_loading" @click="login()">Log in</b-button>
+        <b-button variant="primary" type="submit" :disabled="is_loading">Log in</b-button>
       </div>
     </b-form>
   </div>
