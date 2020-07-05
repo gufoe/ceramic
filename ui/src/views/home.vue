@@ -1,15 +1,19 @@
 <template lang="html">
-  <b-container>
-    <h1><b>Ceramic</b></h1>
-    <h3>Convert your <b>HTML</b> assets into an <b>APK</b> thanks to Capacitor</h3>
+  <b-container class="home-page py-5">
+    <div style="margin: 5vh 0 7vh">
+      <h1><b>Ceramic</b></h1>
+      <h3 class=" lh-15">Convert your <b>HTML</b> assets into an <b>APK</b></h3>
+      <h5 class="mb-0">with Capacitor</h5>
+    </div>
 
-    <b-row class="mt-5">
-      <b-col v-for="feat in features" :key="feat.title" class="feature">
-        <h4 class="mb-3">
-          <b-icon :icon="feat.icon" :variant="feat.variant" :animation="feat.animation" class="mr-1"/>
+    <b-row>
+      <b-col v-for="feat in features" :key="feat.title" :class="'feature -text-'+feat.variant" sm="6">
+        <h4 :class="'mb-3 bold text-'+feat.variant">
+          <b-icon :icon="feat.icon" :variant="feat.variant" :animation="feat.animation" class="mr-2"/>
           {{ feat.title }}
         </h4>
-        <p v-html="feat.description"></p>
+        <p v-html="feat.description"/>
+        <b-button :variant="feat.variant" @click="feat.action_fn">{{ feat.action }}</b-button>
       </b-col>
     </b-row>
   </b-container>
@@ -21,23 +25,50 @@ export default {
     return {
       features: [
         {
-          variant: 'primary',
-          icon: 'layers',
-          title: 'Take advantage of the strengths of Capacitor.',
-          description: 'Build great apps powered by open web standards. Cut down on development time by re-using your existing web dev skills, frameworks and tools. Get all the benefits of cross-platform development while building apps just the way you like.',
+          variant: 'success',
+          icon: 'clipboard-data',
+          title: 'No pain',
+          description: 'Just create a project and upload a zip file with a index.html and the other assets, wait a few seconds and download your APK',
+          action: 'I want to sign in',
+          action_fn: () => {
+            this.$router.push({
+              name: 'login',
+            })
+          },
         },
         {
-          variant: 'primary',
-          icon: 'gear-fill',
-          animation: 'spin',
-          title: 'We compile for you.',
-          description: 'Get app-store ready apps without the headache of maintaining native SDKs. We do the work for you in the cloud and your app will always be built with the most up-to-date SDK for the platform you are targeting.',
+          variant: 'warning',
+          icon: 'terminal',
+          // icon: 'gear-fill',
+          // animation: 'spin',
+          title: 'No humans',
+          description: 'We have the CLI support, so you can automate everybody from the terminal.',
+          action: 'I want to sign up',
+          action_fn: () => {
+            this.$router.push({
+              name: 'signup',
+            })
+          },
         },
         {
-          variant: 'primary',
-          icon: 'alarm',
-          title: 'Quick deployment cycles.',
-          description: 'Use the Hydration feature to get faster debug and build cycles. By compiling builds faster, your updates will be pushed directly to your testers\' previously installed apps, ensuring everyone is working on the most up-to-date version.',
+          variant: 'danger',
+          icon: 'shield-lock',
+          title: 'Secure APIs',
+          description: 'Use our JSON APIs for whatever you like. The cli uses them. ',
+          action: 'I want to do nothing.',
+          action_fn: () => {
+            alert('Ok.')
+          },
+        },
+        {
+          variant: 'info',
+          icon: 'info-circle',
+          title: 'About',
+          description: 'I hate installing and using android studio for my web apps so fuck it i made this service inspired by PhoneGap.<br>My name is Giacomo Rizzi (aka <b><a href="https://t.me/gufoe">@gufoe</a></b>)',
+          action: 'Text me',
+          action_fn: () => {
+            location.href = "https://t.me/gufoe"
+          },
         },
       ]
     }
@@ -46,15 +77,21 @@ export default {
 </script>
 
 <style lang="scss">
-.feature {
-  p {
-    transition: .3s;
-    opacity: .7;
-  }
+.home-page {
+  text-align: center;
+  .feature {
+    margin: 0 auto 3rem;
+    max-width: 30rem;
 
-  &:hover {
     p {
-      opacity: 1;
+      transition: .3s;
+      opacity: .7;
+    }
+
+    &:hover {
+      p {
+        opacity: 1;
+      }
     }
   }
 }

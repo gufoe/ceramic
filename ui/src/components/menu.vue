@@ -47,7 +47,7 @@ export default {
   align-items: center;
   border-bottom: 1px solid var(--primary);
   margin-bottom: 2rem!important;
-  height: 2.7rem;
+  // height: 2.7rem;
   .nav-link {
     width: 7rem;
     text-align: center;
@@ -55,7 +55,7 @@ export default {
     border-radius: 0!important;
     transition: .4s;
     &.active {
-      font-size: 1.1rem;
+      // font-size: 1.1rem;
     }
   }
 }

@@ -1,11 +1,14 @@
+#!/usr/bin/env node
+
 const fs = require('fs')
 const {
   promisify
 } = require('util')
 const FormData = require('form-data')
 const axios = require('axios')
-const host = 'http://localhost:7001'
-// const host = 'https://ceramic.gufoe.it'
+const host = process.argv.includes('--test')
+  ? 'http://localhost:7001'
+  : 'https://ceramic.gufoe.it'
 const http = axios.create({
   baseURL: host+'/api/',
 })
@@ -41,7 +44,7 @@ const commands = {
       project_secret
     })
   },
-  async pack(config, [folder]) {
+  async build(config, [folder]) {
     if (!config.project_secret) {
       return console.log('Set a project id first')
     }
@@ -50,7 +53,7 @@ const commands = {
       return console.log(folder, 'is not a folder')
     }
     const zip_path = '/tmp/' + config.project_secret + '.zip'
-    console.log('Zipping', folder, 'to', zip_path)
+    console.log('Zipping', folder)//, 'to', zip_path)
     const {
       zip
     } = require('zip-a-folder')
@@ -63,7 +66,7 @@ const commands = {
         ...data.getHeaders()
       }
     }).then(res => {
-      console.log('Build queued, polling for', res.data.secret)
+      console.log('Build queued')
       commands.track(config, [res.data.secret])
     }, err => {
       console.log('Upload error:', err.message)
@@ -73,12 +76,12 @@ const commands = {
     })
   },
   async track(config, [build_secret]) {
-    let last_status = null
+    let last_status = 'pending'
     let poll_fn = () => {
       http.get('builds/' + build_secret).then(res => {
         let build = res.data
         if (build.status != last_status) {
-          console.log(build.status)
+          console.log('     ', build.status)
           last_status = build.status
         }
         if (build.status == 'built') {
@@ -111,4 +114,4 @@ const main = async (args) => {
   }
 }
 
-main(process.argv)
+main(process.argv.filter(x => x[0] != '-'))

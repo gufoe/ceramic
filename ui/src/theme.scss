@@ -1,17 +1,23 @@
 
 $theme-colors: (
   primary: #81a1c1,
-  danger: #ff4136,
   darker: darken(#2e3440, 3%),
   dark: #2e3440,
   soft-dark: #3b4252,
   soft-light: darken(#d8dee9, 10%),
   light: #e5e9f0,
+  success: #a3be8c,
+  danger: lighten(#bf616a, 3%),
+  info: #88c0d0,
+  warning: #ebcb8b,
 );
 
 $body-bg: map-get($theme-colors, dark);
 $body-color: map-get($theme-colors, light);
 
+$input-btn-font-size: 1.1em;
+$input-btn-padding-x: 2rem;
+$font-size-base: 1.3rem;
 $input-bg: map-get($theme-colors, soft-dark);
 $input-placeholder-color: map-get($theme-colors, soft-light);
 $input-color: map-get($theme-colors, light);
@@ -28,6 +34,10 @@ $font-family-base: Gafata, "monospace";
 @import '~bootstrap';
 @import '~bootstrap-vue';
 
+body {
+  overflow-y: scroll;
+}
+
 
 .custom-file-label {
   overflow: hidden;
@@ -38,4 +48,37 @@ $font-family-base: Gafata, "monospace";
 
 input {
   filter: none;
+}
+
+
+a {
+  color: var(--light);
+  transition: .2s;
+  &:hover {
+    color: var(--light);
+    text-shadow: 0 0 2rem #fff;
+    text-decoration: none;
+  }
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger {
+}
+
+.btn {
+  font-weight: bold;
+  color: var(--dark);
+  &:hover {
+    color: var(--dark);
+  }
+}
+
+.lh-2 {
+  line-height: 2;
+}
+.lh-15 {
+  line-height: 1.5;
 }
