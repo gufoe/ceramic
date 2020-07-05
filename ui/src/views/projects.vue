@@ -3,24 +3,26 @@
     <template v-if="selected">
       <project :project="selected"/>
     </template>
-    <div v-else class="project-list">
+    <div v-else class="project-list text-center">
       <div v-if="!projects" class="loading">
         Loading...
       </div>
-      <template v-else>
-        <b-button block variant="primary" class="mb-4" :disabled="is_creating" @click="create()">
+      <div v-else>
+        <b-button variant="primary" class="mb-4" :disabled="is_creating" @click="create()">
           Create new project
         </b-button>
-        <b-button block class="project" @click="open(proj)" v-for="proj in projects" :key="proj.id">
-          <!-- <span class="float-left"> -->
+        <div @click="open(proj)" v-for="proj in projects" :key="proj.id" class="project">
+          <b-button variant="outline-primary">
+            <!-- <span class="float-left"> -->
             <!-- &lt;&lt;- -->
-          <!-- </span> -->
-          {{ proj.name }}
-          <!-- <span class="float-right"> -->
+            <!-- </span> -->
+            {{ proj.name }}
+            <!-- <span class="float-right"> -->
             <!-- --&gt; -->
-          <!-- </span> -->
-        </b-button>
-      </template>
+            <!-- </span> -->
+          </b-button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -92,19 +94,19 @@ export default {
 <style lang="scss">
 .project-list {
   padding: 0 2rem;
-  max-width: 20rem;
+  max-width: 40rem;
   margin: 0 auto;
   .project {
     margin: 1rem 0;
-    // border: 2px solid transparent!important;
-    border-color: transparent;
-    // padding: 1rem;
-    background: transparent;
-    &:hover {
-      border-color: var(--primary);
-      // background: var(--primary);
-      color: var(--primary);
-    }
+    // // border: 2px solid transparent!important;
+    // border-color: transparent;
+    // // padding: 1rem;
+    // background: transparent;
+    // &:hover {
+    //   border-color: var(--primary);
+    //   // background: var(--primary);
+    //   color: var(--primary);
+    // }
   }
 }
 </style>

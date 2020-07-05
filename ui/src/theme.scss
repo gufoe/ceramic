@@ -66,11 +66,11 @@ a {
 }
 
 .btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger {
+  color: var(--dark);
 }
 
 .btn {
   font-weight: bold;
-  color: var(--dark);
   &:hover {
     color: var(--dark);
   }

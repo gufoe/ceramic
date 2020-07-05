@@ -13,7 +13,7 @@
           {{ feat.title }}
         </h4>
         <p v-html="feat.description"/>
-        <b-button :variant="feat.variant" @click="feat.action_fn">{{ feat.action }}</b-button>
+        <b-button class="mt-2" :variant="feat.variant" @click="feat.action_fn">{{ feat.action }}</b-button>
       </b-col>
     </b-row>
   </b-container>
@@ -54,7 +54,7 @@ export default {
           variant: 'danger',
           icon: 'shield-lock',
           title: 'Secure APIs',
-          description: 'Use our JSON APIs for whatever you like. The cli uses them. ',
+          description: 'Use our JSON APIs for whatever you like. The CLI uses them. You can use them. Everybody can.',
           action: 'I want to do nothing.',
           action_fn: () => {
             alert('Ok.')
@@ -64,7 +64,7 @@ export default {
           variant: 'info',
           icon: 'info-circle',
           title: 'About',
-          description: 'I hate installing and using android studio for my web apps so fuck it i made this service inspired by PhoneGap.<br>My name is Giacomo Rizzi (aka <b><a href="https://t.me/gufoe">@gufoe</a></b>)',
+          description: 'I hate installing and using android studio for my web apps so I made this service inspired by PhoneGap.<br>My name is Giacomo Rizzi (aka <b><a href="https://t.me/gufoe">@gufoe</a></b>)',
           action: 'Text me',
           action_fn: () => {
             location.href = "https://t.me/gufoe"
@@ -80,7 +80,7 @@ export default {
 .home-page {
   text-align: center;
   .feature {
-    margin: 0 auto 3rem;
+    margin: 1rem auto 5rem;
     max-width: 30rem;
 
     p {
