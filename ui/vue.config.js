@@ -11,4 +11,12 @@ module.exports = {
     hot: true,
     disableHostCheck: true,
   },
+  chainWebpack: config => {
+    config
+      .plugin('html')
+      .tap(args => {
+        args[0].title = 'Ceramic'
+        return args
+      })
+  },
 };
